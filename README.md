@@ -16,4 +16,8 @@ Small dairy farmers often struggle to find reliable and easy-to-understand infor
 
 ## Project Objective
 To provide accessible, source-based dairy animal care information and practical guidance for small dairy farmers across India.
+<<<<<<< HEAD
 =======
+=======
+=======
+>>>>>>> 30da03ec1b42ae3438f63f6983cd71653191964d
