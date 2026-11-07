@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 # PashuSeva
 
@@ -18,5 +17,3 @@ Small dairy farmers often struggle to find reliable and easy-to-understand infor
 ## Project Objective
 To provide accessible, source-based dairy animal care information and practical guidance for small dairy farmers across India.
 =======
-# GEN-AI-TRAINING
->>>>>>> aab7aed08577307e6f945e8f423032e7e8e2b486

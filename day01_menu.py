@@ -1,27 +1,29 @@
-
 # ==================================================
-#                  PASHUSEVA
-#                   MAIN MENU
+#                    PASHUSEVA
+#                      MAIN MENU
 # ==================================================
 
 print("\n" + "=" * 45)
 print("             WELCOME TO PASHUSEVA")
+print("       Dairy Animal Care Information")
 print("=" * 45)
 
 
 while True:
 
     print("\n-------------- MAIN MENU --------------")
+
     print("1. About PashuSeva")
     print("2. Sample Questions")
     print("3. Animal Care Rule Check")
     print("0. Exit")
+
     print("---------------------------------------")
 
     choice = input("Enter your choice: ").strip()
 
 
-    # Option 1: About PashuSeva
+    # OPTION 1: ABOUT PASHUSEVA
 
     if choice == "1":
 
@@ -31,76 +33,85 @@ while True:
         print("information platform for small farmers.")
 
         print("\nIt provides information about:")
+
         print("- Animal Feeding")
         print("- Calf Rearing")
-        print("- Vaccination")
+        print("- Fodder Conservation")
+        print("- Vaccination Schedule")
         print("- Common Animal Diseases")
 
-        print("---------------------------------------")
+        print("\nSupported Animals:")
+        print("- Cow")
+        print("- Buffalo")
+        print("- Calf")
+
+        print("\nData Sources:")
+        print("- NDDB Farmers' Corner")
+        print("- Handbook of Good Dairy Husbandry Practices")
 
 
-    # Option 2: Sample Questions
+    # OPTION 2: SAMPLE QUESTIONS
 
     elif choice == "2":
 
         print("\n----------- SAMPLE QUESTIONS -----------")
 
-        print("1. How can I reduce cattle feeding costs?")
-        print("2. How can I prevent repeated mastitis?")
+        print("1. What should a newborn calf receive first?")
+        print("2. When should colostrum be given to a newborn calf?")
 
-        print("----------------------------------------")
+        print("\nThese questions help farmers understand")
+        print("basic dairy animal care practices.")
 
 
-    # Option 3: Animal Care Rule Check
+    # OPTION 3: ANIMAL CARE RULE CHECK
 
     elif choice == "3":
 
-        status = input(
-            "\nIs your dairy animal vaccinated? (Yes/No/Unknown): "
-        ).strip().lower()
+        print("\n----------- ANIMAL CARE RULE CHECK -----------")
 
-        if status == "yes":
+        animal_type = input(
+            "Enter animal type (Cow/Buffalo/Calf): "
+        ).strip().title()
 
-            print("\nVaccination status: Yes")
-            print("Keep the vaccination record updated.")
+        if animal_type == "Cow":
 
-        elif status == "no":
+            print("\nCow Care Information:")
+            print("- Provide balanced nutrition.")
+            print("- Ensure clean drinking water.")
+            print("- Follow the recommended vaccination schedule.")
 
-            print("\nVaccination status: No")
-            print("Contact a veterinarian for the appropriate")
-            print("vaccination schedule for your animal.")
+        elif animal_type == "Buffalo":
 
-        elif status == "unknown":
+            print("\nBuffalo Care Information:")
+            print("- Provide balanced nutrition.")
+            print("- Ensure clean drinking water.")
+            print("- Provide suitable cooling and bathing facilities.")
 
-            print("\nVaccination status is unknown.")
-            print("Check the animal's vaccination record")
-            print("or contact a veterinarian.")
+        elif animal_type == "Calf":
+
+            print("\nCalf Care Information:")
+            print("- Provide colostrum soon after birth.")
+            print("- Maintain proper hygiene.")
+            print("- Follow the recommended calf feeding schedule.")
 
         else:
 
-            print("\nInvalid input!")
-            print("Please enter Yes, No or Unknown.")
-
-        print("----------------------------------------")
+            print("\nInvalid animal type!")
+            print("Please enter Cow, Buffalo or Calf.")
 
 
-    # Option 0: Exit
+    # OPTION 0: EXIT
 
     elif choice == "0":
 
         print("\nThank you for using PashuSeva!")
-        print("Goodbye!")
-        print("----------------------------------------")
-
+        print("Have a healthy and productive dairy farm!")
         break
 
 
-    # Invalid Menu Choice
+    # INVALID MENU OPTION
 
     else:
 
         print("\nInvalid choice!")
-        print("Please select 0, 1, 2 or 3.")
-
-
-
+        print("Please select 1, 2, 3 or 0.")
