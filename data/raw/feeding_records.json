@@ -1,0 +1,58 @@
+[
+    {
+        "topic": "Dry and Green Fodder",
+        "animal_type": "Adult dairy animal",
+        "recommendation": "Feed dry and green fodder daily.",
+        "quantity_or_schedule": "6 kg dry fodder and 15-20 kg green fodder per day.",
+        "source_doc": "NDDB Feeding of Dairy Animals",
+        "source_url": "https://nddb.coop/farmer/animal-nutrition/feeding-of-dairy-animals"
+    },
+    {
+        "topic": "Green Fodder Proportion",
+        "animal_type": "Adult dairy animal",
+        "recommendation": "Feed legume and non-legume green fodder in the recommended proportion.",
+        "quantity_or_schedule": "1:3 proportion.",
+        "source_doc": "NDDB Feeding of Dairy Animals",
+        "source_url": "https://nddb.coop/farmer/animal-nutrition/feeding-of-dairy-animals"
+    },
+    {
+        "topic": "Fodder Harvesting",
+        "animal_type": "Adult dairy animal",
+        "recommendation": "Harvest green fodder at the 50% flowering stage.",
+        "quantity_or_schedule": "At 50% flowering stage.",
+        "source_doc": "NDDB Feeding of Dairy Animals",
+        "source_url": "https://nddb.coop/farmer/animal-nutrition/feeding-of-dairy-animals"
+    },
+    {
+        "topic": "Fodder Conservation",
+        "animal_type": "Adult dairy animal",
+        "recommendation": "Conserve surplus green fodder as hay or silage.",
+        "quantity_or_schedule": "Use during summer or when green fodder is scarce.",
+        "source_doc": "NDDB Feeding of Dairy Animals",
+        "source_url": "https://nddb.coop/farmer/animal-nutrition/feeding-of-dairy-animals"
+    },
+    {
+        "topic": "Chaffing Fodder",
+        "animal_type": "Adult dairy animal",
+        "recommendation": "Chaff fodder before feeding to reduce wastage and increase digestibility.",
+        "quantity_or_schedule": "Before feeding.",
+        "source_doc": "NDDB Feeding of Dairy Animals",
+        "source_url": "https://nddb.coop/farmer/animal-nutrition/feeding-of-dairy-animals"
+    },
+    {
+        "topic": "Changing Animal Feed",
+        "animal_type": "Adult dairy animal",
+        "recommendation": "Change animal feed gradually instead of suddenly.",
+        "quantity_or_schedule": "Gradual change.",
+        "source_doc": "NDDB Feeding of Dairy Animals",
+        "source_url": "https://nddb.coop/farmer/animal-nutrition/feeding-of-dairy-animals"
+    },
+    {
+        "topic": "Total Mixed Ration",
+        "animal_type": "Adult dairy animal",
+        "recommendation": "Mix feed ingredients and additives to prepare Total Mixed Ration (TMR).",
+        "quantity_or_schedule": "Feed in 3-4 equally divided parts per day.",
+        "source_doc": "NDDB Feeding of Dairy Animals",
+        "source_url": "https://nddb.coop/farmer/animal-nutrition/feeding-of-dairy-animals"
+    }
+]
