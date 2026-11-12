@@ -1,0 +1,53 @@
+
+[
+  {
+    "id": 1,
+    "question": "What is the PM-KISAN scheme?",
+    "answer_available": true
+  },
+  {
+    "id": 2,
+    "question": "How much financial assistance is provided under PM-KISAN?",
+    "answer_available": true
+  },
+  {
+    "id": 3,
+    "question": "How many installments are provided every year?",
+    "answer_available": true
+  },
+  {
+    "id": 4,
+    "question": "Who is eligible for the PM-KISAN scheme?",
+    "answer_available": true
+  },
+  {
+    "id": 5,
+    "question": "Which documents are required to apply for PM-KISAN?",
+    "answer_available": true
+  },
+  {
+    "id": 6,
+    "question": "What is the exact date of my next PM-KISAN installment?",
+    "answer_available": false
+  },
+  {
+    "id": 7,
+    "question": "Is an Aadhaar card required for PM-KISAN?",
+    "answer_available": true
+  },
+  {
+    "id": 8,
+    "question": "Are landholding papers required for this scheme?",
+    "answer_available": true
+  },
+  {
+    "id": 9,
+    "question": "Which ministry manages the PM-KISAN scheme?",
+    "answer_available": true
+  },
+  {
+    "id": 10,
+    "question": "Can a farmer without cultivable land apply for PM-KISAN?",
+    "answer_available": true
+  }
+]
