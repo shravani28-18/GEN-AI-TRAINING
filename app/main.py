@@ -1,4 +1,3 @@
-
 import json
 from pathlib import Path
 
@@ -6,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 from app.smart_search import search_records
-
+from app.llm import generate_response
 
 # Project folder path
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -87,6 +86,16 @@ class QuestionRequest(BaseModel):
     question: str
 
 
+# Chat Request Model
+class ChatRequest(BaseModel):
+    question: str
+
+
+# Chat Response Model
+class ChatResponse(BaseModel):
+    answer: str
+    confidence: str
+    follow_up: str | None = None
 # Ask a Question API
 @app.post("/questions")
 def ask_question(request: QuestionRequest):
@@ -115,3 +124,77 @@ def ask_question(request: QuestionRequest):
         "source": results[0]["source_doc"],
         "results": results
     }
+
+
+# Chat API
+@app.post("/chat", response_model=ChatResponse)
+def chat_api(request: ChatRequest):
+
+    question = request.question.strip()
+
+    if not question:
+        raise HTTPException(
+            status_code=400,
+            detail="Question cannot be empty"
+        )
+
+    # Search relevant PashuSeva records
+    results = search_records(question)
+
+    # If no relevant records are found
+    if not results:
+        return ChatResponse(
+            answer="Sorry, this information is currently not available in PashuSeva records. Please consult a qualified veterinarian for animal health concerns.",
+            confidence="low",
+            follow_up="Would you like to ask about animal feeding?"
+        )
+
+    # Prepare context from search results
+    context = "\n\n".join([
+        f"Topic: {record['topic']}\n"
+        f"Animal: {record['animal_type']}\n"
+        f"Recommendation: {record['recommendation']}\n"
+        f"Quantity or Schedule: {record['quantity_or_schedule']}\n"
+        f"Source: {record['source_doc']}"
+        for record in results
+    ])
+
+    # Load system prompt
+    system_prompt = (BASE_DIR / "prompts" / "system.txt").read_text(
+        encoding="utf-8"
+    )
+
+    # Load task prompt
+    task_prompt = (BASE_DIR / "prompts" / "task1.txt").read_text(
+        encoding="utf-8"
+    )
+
+    # Prepare final prompt
+    prompt = (
+        system_prompt
+        + "\n\n"
+        + task_prompt.format(
+            question=question,
+            context=context
+        )
+    )
+
+    # Generate answer using Gemini
+    response = generate_response(prompt)
+
+    # Parse Gemini JSON response
+    try:
+        data = json.loads(response)
+
+        return ChatResponse(
+            answer=data["answer"],
+            confidence=data["confidence"],
+            follow_up=data.get("follow_up")
+        )
+
+    except (json.JSONDecodeError, KeyError, TypeError):
+        return ChatResponse(
+            answer=response,
+            confidence="low",
+            follow_up="Would you like to ask another animal care question?"
+        )

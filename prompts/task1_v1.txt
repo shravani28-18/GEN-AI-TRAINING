@@ -1,0 +1,9 @@
+Answer the farmer's question using the available PashuSeva records.
+
+Question:
+{question}
+
+Available Records:
+{context}
+
+Give a simple and relevant answer that a dairy farmer can understand.

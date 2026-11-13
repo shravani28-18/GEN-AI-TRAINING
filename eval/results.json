@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "question": "What is the difference between dry fodder and green fodder for dairy animals?",
+        "related_topic": "Dry and Green Fodder",
+        "answer_available": true,
+        "prompt_a_answer": "Namaste! \n\nBased on the PashuSeva records, adult dairy animals should be fed both dry and green fodder daily. The recommended quantities per day are:\n\n* **Dry fodder:** 6 kg per day\n* **Green fodder:** 15-20 kg per day (which should include legume and non-legume green fodder in a 1:3 proportion). \n\nSurplus green fodder can also be conserved as hay or silage to use during summer or when green fodder is scarce.",
+        "prompt_b_answer": "{\n  \"answer\": \"Namaste! According to PashuSeva records, adult dairy animals should be fed both dry and green fodder daily. The recommended daily quantity is 6 kg of dry fodder and 15-20 kg of green fodder per day.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know about the recommended proportion of legume and non-legume green fodder?\"\n}"
+    },
+    {
+        "id": 2,
+        "question": "How much green fodder should be included in a dairy animal's daily feed?",
+        "related_topic": "Green Fodder Proportion",
+        "answer_available": true,
+        "prompt_a_answer": "For an adult dairy animal, you should feed **15 to 20 kg** of green fodder per day. \n\n*(Source: NDDB Feeding of Dairy Animals)*",
+        "prompt_b_answer": "{\n  \"answer\": \"Namaste! An adult dairy animal should be fed 15-20 kg of green fodder per day along with 6 kg of dry fodder.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know about the proportion of legume and non-legume green fodder?\"\n}"
+    },
+    {
+        "id": 3,
+        "question": "When is the right time to harvest fodder?",
+        "related_topic": "Fodder Harvesting",
+        "answer_available": true,
+        "prompt_a_answer": "The right time to harvest green fodder is at the 50% flowering stage.",
+        "prompt_b_answer": "{\n  \"answer\": \"The right time to harvest green fodder is at the 50% flowering stage.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know how to store surplus green fodder as hay or silage?\"\n}"
+    },
+    {
+        "id": 4,
+        "question": "How can I conserve fodder for later use?",
+        "related_topic": "Fodder Conservation",
+        "answer_available": true,
+        "prompt_a_answer": "Namaste! \n\nYou can conserve surplus green fodder as hay or silage. You can use this conserved fodder during the summer or when green fodder is scarce.",
+        "prompt_b_answer": "{\n  \"answer\": \"You can conserve surplus green fodder as hay or silage. You can use this conserved fodder during summer or when green fodder is scarce.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know about feeding dry and green fodder daily?\"\n}"
+    },
+    {
+        "id": 5,
+        "question": "Why should I chop fodder before feeding it to dairy animals?",
+        "related_topic": "Chaffing Fodder",
+        "answer_available": true,
+        "prompt_a_answer": "You should chop your fodder before feeding it to your dairy animals to reduce wastage and increase digestibility.",
+        "prompt_b_answer": "{\n  \"answer\": \"You should chop fodder before feeding it to your dairy animals to reduce wastage and increase digestibility.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know about the recommended daily quantity of dry and green fodder for adult dairy animals?\"\n}"
+    },
+    {
+        "id": 6,
+        "question": "What vaccination schedule should I follow for my dairy cow?",
+        "related_topic": "Vaccination",
+        "answer_available": false,
+        "prompt_a_answer": "I am sorry, but the information about the vaccination schedule is currently unavailable in the provided PashuSeva records.",
+        "prompt_b_answer": "{\n  \"answer\": \"Namaste. I am sorry, but the vaccination schedule for your dairy cow is currently unavailable in the PashuSeva records.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like information on feeding or fodder management for your dairy cow instead?\"\n}"
+    },
+    {
+        "id": 7,
+        "question": "How should I gradually change my dairy animal's feed?",
+        "related_topic": "Changing Animal Feed",
+        "answer_available": true,
+        "prompt_a_answer": "Namaste! \n\nYou should always change your dairy animal's feed gradually instead of doing it suddenly. \n\n*(Source: NDDB Feeding of Dairy Animals)*",
+        "prompt_b_answer": "{\n  \"answer\": \"You should change your dairy animal's feed gradually instead of suddenly.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know how to prepare a Total Mixed Ration (TMR)?\"\n}"
+    },
+    {
+        "id": 8,
+        "question": "What is Total Mixed Ration and why is it used for dairy animals?",
+        "related_topic": "Total Mixed Ration",
+        "answer_available": true,
+        "prompt_a_answer": "Namaste! \n\nAccording to PashuSeva records, Total Mixed Ration (TMR) is prepared by mixing feed ingredients and additives together. It is fed to adult dairy animals in 3 to 4 equally divided parts per day.",
+        "prompt_b_answer": "{\n  \"answer\": \"Total Mixed Ration (TMR) is prepared by mixing feed ingredients and additives together. It should be fed to adult dairy animals in 3-4 equally divided parts per day.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know about the daily fodder requirements for your dairy animals?\"\n}"
+    },
+    {
+        "id": 9,
+        "question": "Why is it important to provide both dry and green fodder?",
+        "related_topic": "Dry and Green Fodder",
+        "answer_available": true,
+        "prompt_a_answer": "Namaste! \n\nBased on the available records, the provided information does not state the specific reasons why it is important to provide both dry and green fodder. However, the records recommend feeding both dry fodder (6 kg per day) and green fodder (15-20 kg per day) daily to adult dairy animals. \n\nIf you have any other questions about animal care, please feel free to ask!",
+        "prompt_b_answer": "{\n  \"answer\": \"Namaste! According to our records, it is recommended to feed both dry and green fodder daily to adult dairy animals. The recommended daily quantity is 6 kg of dry fodder and 15-20 kg of green fodder per day.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know about chaffing fodder or conserving surplus green fodder?\"\n}"
+    },
+    {
+        "id": 10,
+        "question": "What should I consider when preparing a mixed ration for a dairy animal?",
+        "related_topic": "Total Mixed Ration",
+        "answer_available": true,
+        "prompt_a_answer": "Hello! When preparing a mixed ration for your dairy animal, here are the important things to consider based on the PashuSeva records:\n\n* Mix your feed ingredients and additives together to prepare a Total Mixed Ration (TMR).\n* Feed the TMR in 3 to 4 equally divided parts per day.\n* Feed legume and non-legume green fodder in a 1:3 proportion.\n* Chaff the fodder before feeding to reduce wastage and increase digestibility.\n* If you need to change the animal feed, always do it gradually instead of suddenly.",
+        "prompt_b_answer": "{\n  \"answer\": \"Namaste! When preparing a Total Mixed Ration (TMR) for your adult dairy animal, you should mix the feed ingredients and additives together. Feed this mixture in 3 to 4 equally divided parts per day.\",\n  \"confidence\": \"high\",\n  \"follow_up\": \"Would you like to know about feeding green fodder proportions or changing animal feed?\"\n}"
+    }
+]

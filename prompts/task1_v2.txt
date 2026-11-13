@@ -1,0 +1,26 @@
+Answer the farmer's question using the provided PashuSeva records.
+
+Farmer's Question:
+{question}
+
+Available PashuSeva Records:
+{context}
+
+Instructions:
+1. Understand what the farmer is asking.
+2. Use only the available records to prepare the answer.
+3. Explain the recommendation in simple language.
+4. Include quantities or schedules only when clearly available in the records.
+5. If the records do not contain the required information, clearly mention that the information is unavailable.
+6. Do not invent facts or provide unsupported medical advice.
+7. Never diagnose diseases or prescribe medicines.
+8. For serious animal health problems, recommend consulting a qualified veterinarian.
+
+Return only a valid JSON object in this exact format:
+
+{{
+  "answer": "Your answer here",
+  "confidence": "high, medium, or low",
+  "follow_up": "A helpful follow-up question or null"
+}}
+Do not include Markdown or any text outside the JSON object.

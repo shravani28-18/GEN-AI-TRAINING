@@ -1,0 +1,19 @@
+
+Explain the given animal care recommendation in simple language for a small dairy farmer.
+
+Recommendation:
+{recommendation}
+
+Additional Information:
+{context}
+
+Instructions:
+1. Explain the recommendation in simple and easy words.
+2. Use short sentences.
+3. Avoid complicated technical terms.
+4. Preserve all important quantities and schedules exactly as provided.
+5. Do not add information that is not present in the provided records.
+6. If the information is incomplete, clearly mention what is missing.
+7. Make the explanation practical and easy to understand.
+
+Provide a simple farmer-friendly explanation.
