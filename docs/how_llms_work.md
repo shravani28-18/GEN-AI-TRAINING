@@ -1,63 +1,81 @@
 
-# How Large Language Models (LLMs) Work
+# How LLMs Work in PashuSeva
 
 ## 1. What is an LLM?
 
-A Large Language Model (LLM) is an AI model that understands and generates human language.
+A Large Language Model (LLM) is an Artificial Intelligence model that can understand and generate human language.
 
-It is trained using a large amount of text data, such as books, articles, and websites.
+It is trained using a large amount of text data. It learns language patterns and uses them to generate meaningful responses.
 
 Examples of LLMs include GPT, Gemini, and Llama.
 
-## 2. How Does an LLM Work?
+## 2. How Can an LLM Help PashuSeva?
 
-An LLM works in a few important steps:
+PashuSeva is a smart animal care information project designed to help dairy farmers.
 
-1. **Input:** The user enters a question or message.
-2. **Tokenization:** The text is divided into smaller pieces called tokens.
-3. **Processing:** The model analyzes the tokens and understands their context using patterns learned during training.
-4. **Prediction:** It predicts the most suitable next token.
-5. **Output:** It generates a response by predicting tokens one after another.
+Farmers may ask questions about animal feeding, green fodder, dry fodder, fodder conservation, and other dairy care topics.
 
-## 3. Simple Diagram
+An LLM can understand questions written in simple human language and help generate easy-to-understand responses.
+
+Our current PashuSeva prototype uses TF-IDF-based smart search to find relevant information from its available records. It does not currently have an LLM integrated.
+
+## 3. How PashuSeva Processes a Question
+
+1. **User Input:** A farmer enters a question about dairy animal care.
+2. **API Request:** The question is received by the PashuSeva FastAPI application.
+3. **Smart Search:** TF-IDF converts the question and available records into numerical representations.
+4. **Similarity Matching:** Cosine similarity helps rank records according to their relevance to the question.
+5. **Result:** The system returns matching recommendations and their available source information.
+6. **Response:** The farmer receives the relevant information.
+
+## 4. PashuSeva Workflow Diagram
 
 ```text
-User Question
-      |
-      v
-Tokenization
-      |
-      v
-LLM Processing
-      |
-      v
-Next Token Prediction
-      |
-      v
-Generated Response
+       Dairy Farmer
+            |
+            v
+     Enters a Question
+            |
+            v
+      PashuSeva API
+        (FastAPI)
+            |
+            v
+       Smart Search
+        (TF-IDF)
+            |
+            v
+   Cosine Similarity Ranking
+            |
+            v
+    PashuSeva Data Records
+      (NDDB Information)
+            |
+            v
+   Relevant Recommendation
+            |
+            v
+       Farmer Gets Answer
 ```
 
-## 4. How Does an LLM Learn?
+## 5. Role of LLMs in Future Development
 
-During training, an LLM processes a huge amount of text and learns language patterns, relationships between words, and context.
+In the future, an LLM can be integrated with PashuSeva to:
 
-It adjusts its internal parameters to improve its predictions.
+- Understand questions in simple language.
+- Support questions in regional languages.
+- Explain technical animal care information in easy words.
+- Generate farmer-friendly responses using trusted information.
 
-## 5. Limitations of LLMs
+## 6. Limitations
 
-- LLMs can sometimes generate incorrect information.
-- They may not know recent information.
-- They can produce answers that sound correct but are not factual.
-- Their answers depend on the data and context available to them.
+- An LLM may sometimes generate incorrect information.
+- It may provide information that is not available in the source data.
+- Answers should be checked against trusted sources.
+- The system should clearly say when the required information is unavailable.
 
-## 6. LLMs in SchemeSaathi
+## 7. Conclusion
 
-In SchemeSaathi, an LLM can help users ask questions about government schemes in simple language.
+PashuSeva aims to make dairy animal care information easier for farmers to understand and access.
 
-For example, a farmer can ask:
-
-"How much money do I get under PM-KISAN?"
-
-The system can use available scheme information to provide an understandable answer.
-
-However, it should not invent details that are missing from its data.
+The current prototype uses TF-IDF and cosine similarity for searching available records. LLM integration can be considered as a future improvement.

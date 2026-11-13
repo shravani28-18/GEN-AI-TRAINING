@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "question": "What is the difference between dry fodder and green fodder for dairy animals?",
+    "related_topic": "Dry and Green Fodder",
+    "answer_available": true
+  },
+  {
+    "id": 2,
+    "question": "How much green fodder should be included in a dairy animal's daily feed?",
+    "related_topic": "Green Fodder Proportion",
+    "answer_available": true
+  },
+  {
+    "id": 3,
+    "question": "When is the right time to harvest fodder?",
+    "related_topic": "Fodder Harvesting",
+    "answer_available": true
+  },
+  {
+    "id": 4,
+    "question": "How can I conserve fodder for later use?",
+    "related_topic": "Fodder Conservation",
+    "answer_available": true
+  },
+  {
+    "id": 5,
+    "question": "Why should I chop fodder before feeding it to dairy animals?",
+    "related_topic": "Chaffing Fodder",
+    "answer_available": true
+  },
+  {
+    "id": 6,
+    "question": "What vaccination schedule should I follow for my dairy cow?",
+    "related_topic": "Vaccination",
+    "answer_available": false
+  },
+  {
+    "id": 7,
+    "question": "How should I gradually change my dairy animal's feed?",
+    "related_topic": "Changing Animal Feed",
+    "answer_available": true
+  },
+  {
+    "id": 8,
+    "question": "What is Total Mixed Ration and why is it used for dairy animals?",
+    "related_topic": "Total Mixed Ration",
+    "answer_available": true
+  },
+  {
+    "id": 9,
+    "question": "Why is it important to provide both dry and green fodder?",
+    "related_topic": "Dry and Green Fodder",
+    "answer_available": true
+  },
+  {
+    "id": 10,
+    "question": "What should I consider when preparing a mixed ration for a dairy animal?",
+    "related_topic": "Total Mixed Ration",
+    "answer_available": true
+  }
+]
