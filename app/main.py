@@ -1,3 +1,4 @@
+
 import json
 from pathlib import Path
 
@@ -6,6 +7,8 @@ from pydantic import BaseModel
 
 from app.smart_search import search_records
 from app.llm import generate_response
+from app.vectorstore import search_similar
+
 
 # Project folder path
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +27,6 @@ app = FastAPI(
 
 # Load records from JSON
 def load_data():
-
     with open(DATA_FILE, "r", encoding="utf-8") as file:
         return json.load(file)
 
@@ -32,16 +34,15 @@ def load_data():
 # Health Check API
 @app.get("/health")
 def health_check():
-
     return {
         "status": "healthy",
         "message": "PashuSeva API is running"
     }
 
+
 # Get all records with limit
 @app.get("/records")
 def get_all_records(limit: int = 10):
-
     records = load_data()
 
     if limit < 1:
@@ -56,7 +57,6 @@ def get_all_records(limit: int = 10):
 # Get one record by ID
 @app.get("/records/{record_id}")
 def get_record(record_id: int):
-
     records = load_data()
 
     if record_id < 1 or record_id > len(records):
@@ -71,7 +71,6 @@ def get_record(record_id: int):
 # Smart Search API
 @app.get("/search")
 def search_api(q: str):
-
     results = search_records(q)
 
     return {
@@ -79,6 +78,40 @@ def search_api(q: str):
         "total_results": len(results),
         "results": results
     }
+
+
+# Semantic Search API
+@app.get("/search/semantic")
+def semantic_search_api(q: str, top_k: int = 5):
+
+    query = q.strip()
+
+    if not query:
+        raise HTTPException(
+            status_code=400,
+            detail="Query cannot be empty"
+        )
+
+    if top_k < 1 or top_k > 20:
+        raise HTTPException(
+            status_code=400,
+            detail="top_k must be between 1 and 20"
+        )
+
+    try:
+        results = search_similar(query, top_k)
+
+        return {
+            "query": query,
+            "total_results": len(results),
+            "results": results
+        }
+
+    except Exception:
+        raise HTTPException(
+            status_code=500,
+            detail="Semantic search failed. Please try again later."
+        )
 
 
 # Question Request Model
@@ -96,6 +129,8 @@ class ChatResponse(BaseModel):
     answer: str
     confidence: str
     follow_up: str | None = None
+
+
 # Ask a Question API
 @app.post("/questions")
 def ask_question(request: QuestionRequest):
@@ -144,7 +179,11 @@ def chat_api(request: ChatRequest):
     # If no relevant records are found
     if not results:
         return ChatResponse(
-            answer="Sorry, this information is currently not available in PashuSeva records. Please consult a qualified veterinarian for animal health concerns.",
+            answer=(
+                "Sorry, this information is currently not available "
+                "in PashuSeva records. Please consult a qualified "
+                "veterinarian for animal health concerns."
+            ),
             confidence="low",
             follow_up="Would you like to ask about animal feeding?"
         )

@@ -3,3 +3,11 @@ venv/
 __pycache__/
 *.pyc
 .env
+data/chroma_db/
+
+data/downloads/nmsa_guidelines.pdf
+data/downloads/pm_kisan_guidelines.pdf
+data/downloads/pm_kisan_maandhan.pdf
+data/raw/schemes.json
+data/schemes_records.json
+data/raw/Handbook-of-Good-Dairy-Husbandry-Practices.pdf
