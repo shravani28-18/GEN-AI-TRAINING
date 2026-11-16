@@ -29,7 +29,7 @@ def embed_texts(texts, task_type="RETRIEVAL_DOCUMENT"):
     client = get_client()
     all_embeddings = []
 
-    batch_size = 10
+    batch_size = 25
 
     for start in range(0, len(texts), batch_size):
         batch = texts[start:start + batch_size]
