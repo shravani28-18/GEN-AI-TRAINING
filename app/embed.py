@@ -1,12 +1,10 @@
-
 import os
+import time
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
 from app.chunking import load_pdf_chunks
-
-
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -21,24 +19,53 @@ def get_client():
     return genai.Client(api_key=GEMINI_API_KEY)
 
 
+
 def embed_texts(texts, task_type="RETRIEVAL_DOCUMENT"):
-    """Generate embeddings for a list of texts."""
+    """Generate embeddings with batching and quota retry."""
 
     if not texts:
         return []
 
     client = get_client()
+    all_embeddings = []
 
-    response = client.models.embed_content(
-        model=EMBEDDING_MODEL,
-        contents=texts,
-        config=types.EmbedContentConfig(
-            task_type=task_type,
-            output_dimensionality=EMBEDDING_DIMENSION
+    batch_size = 10
+
+    for start in range(0, len(texts), batch_size):
+        batch = texts[start:start + batch_size]
+
+        for attempt in range(3):
+            try:
+                response = client.models.embed_content(
+                    model=EMBEDDING_MODEL,
+                    contents=batch,
+                    config=types.EmbedContentConfig(
+                        task_type=task_type,
+                        output_dimensionality=EMBEDDING_DIMENSION
+                    )
+                )
+
+                all_embeddings.extend(
+                    [item.values for item in response.embeddings]
+                )
+                break
+
+            except Exception as error:
+                if "429" in str(error) and attempt < 2:
+                    wait_time = 60
+                    print(
+                        f"Rate limit reached. Waiting {wait_time} seconds..."
+                    )
+                    time.sleep(wait_time)
+                else:
+                    raise
+
+        print(
+            f"Embedded {min(start + batch_size, len(texts))}"
+            f"/{len(texts)} texts"
         )
-    )
 
-    return [item.values for item in response.embeddings]
+    return all_embeddings
 
 
 def embed_chunks(chunks):

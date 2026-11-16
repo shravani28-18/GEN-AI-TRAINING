@@ -1,0 +1,78 @@
+
+[
+  {
+    "id": 1,
+    "question": "What is the difference between dry fodder and green fodder for dairy animals?",
+    "expected_answerable": true
+  },
+  {
+    "id": 2,
+    "question": "How much green fodder should be included in a dairy animal's daily feed?",
+    "expected_answerable": true
+  },
+  {
+    "id": 3,
+    "question": "When is the right time to harvest fodder?",
+    "expected_answerable": true
+  },
+  {
+    "id": 4,
+    "question": "How can I conserve fodder for later use?",
+    "expected_answerable": true
+  },
+  {
+    "id": 5,
+    "question": "Why should I chop fodder before feeding it to dairy animals?",
+    "expected_answerable": true
+  },
+  {
+    "id": 6,
+    "question": "What vaccination schedule should I follow for my dairy cow?",
+    "expected_answerable": false
+  },
+  {
+    "id": 7,
+    "question": "How should I gradually change my dairy animal's feed?",
+    "expected_answerable": true
+  },
+  {
+    "id": 8,
+    "question": "What is Total Mixed Ration and why is it used for dairy animals?",
+    "expected_answerable": true
+  },
+  {
+    "id": 9,
+    "question": "Why is it important to provide both dry and green fodder?",
+    "expected_answerable": true
+  },
+  {
+    "id": 10,
+    "question": "What should I consider when preparing a mixed ration for a dairy animal?",
+    "expected_answerable": true
+  },
+  {
+    "id": 11,
+    "question": "What are the benefits of feeding chopped fodder to cattle?",
+    "expected_answerable": true
+  },
+  {
+    "id": 12,
+    "question": "How can farmers store green fodder for future use?",
+    "expected_answerable": true
+  },
+  {
+    "id": 13,
+    "question": "Why should dairy animals receive a balanced ration?",
+    "expected_answerable": true
+  },
+  {
+    "id": 14,
+    "question": "What precautions should be taken while changing an animal's diet?",
+    "expected_answerable": true
+  },
+  {
+    "id": 15,
+    "question": "What is the importance of silage in fodder conservation?",
+    "expected_answerable": true
+  }
+]

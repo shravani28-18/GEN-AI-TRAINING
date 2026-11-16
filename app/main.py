@@ -9,6 +9,7 @@ from app.smart_search import search_records
 from app.llm import generate_response
 from app.vectorstore import search_similar
 
+from app.rag import answer_question
 
 # Project folder path
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -236,4 +237,27 @@ def chat_api(request: ChatRequest):
             answer=response,
             confidence="low",
             follow_up="Would you like to ask another animal care question?"
+        )
+
+@app.post("/ask")
+def ask_api(request: QuestionRequest):
+    question = request.question.strip()
+
+    if not question:
+        raise HTTPException(
+            status_code=400,
+            detail="Question cannot be empty"
+        )
+
+    try:
+        result = answer_question(question)
+        return {
+            "question": question,
+            **result
+        }
+    except Exception as error:
+        print(f"RAG error: {error}")
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to generate an answer. Please try again."
         )

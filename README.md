@@ -168,3 +168,33 @@ The analysis includes:
 PashuSeva uses TF-IDF (Term Frequency-Inverse Document Frequency) and cosine similarity to identify records relevant to a farmer's question.
 
 The search results are ranked according to
+
+
+## Day 8 – Retrieval-Augmented Generation (RAG) and Evaluation
+
+### 1. RAG Implementation
+- Implemented `app/rag.py` for answering farmer questions using retrieved PDF chunks.
+- Integrated the RAG pipeline with the FastAPI `POST /ask` endpoint.
+- Answers are generated using retrieved document context.
+- Source and page citations are included in responses.
+- Unanswerable evaluation question Q6 returns "I don't know."
+
+### 2. Evaluation Dataset
+- Created `eval/eval_set.json`.
+- Contains 15 farmer-related evaluation questions.
+- Each question includes an expected answerability label.
+
+### 3. Configuration Comparison
+
+Two configurations are prepared for evaluation:
+
+| Configuration | Chunk Size | Top-K |
+|---|---:|---:|
+| A | 500 | 3 |
+| B | 1000 | 5 |
+
+### 4. Evaluation Status
+- Evaluation script: `eval/run_eval.py`
+- Results file: `eval/results_day8.json`
+- Evaluation dataset verified: 15 questions.
+- Full evaluation pending Gemini API quota reset.
