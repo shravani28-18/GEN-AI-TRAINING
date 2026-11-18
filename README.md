@@ -1,84 +1,144 @@
-# PashuSeva
+# PASHUSEVA – Smart Animal Care Information
 
-## Project Overview
+PashuSeva is an AI-powered animal care information system designed to help small dairy farmers get reliable information about feeding, calf care, vaccination, common diseases, and dairy animal management.
 
-PashuSeva is a dairy animal care information platform designed to provide reliable, source-based information about animal feeding, calf rearing, vaccination, and common diseases.
+The application uses trusted dairy-related documents and AI-based retrieval to provide relevant answers in English, Marathi, and Hindi.
 
-The project uses information from trusted dairy farming resources such as NDDB Farmers' Corner and the Handbook of Good Dairy Husbandry Practices.
+## Project Objectives
 
-The current prototype focuses on dairy animal feeding information and provides data analysis, smart search, and API-based access to records.
+- Provide reliable animal care information to dairy farmers.
+- Help farmers understand feeding and nutrition requirements.
+- Provide information about calf care, vaccination, and common diseases.
+- Support farmers through multilingual AI-powered assistance.
+- Reduce the difficulty of finding information from lengthy agricultural documents.
 
-## Target User
+## Key Features
 
-A small woman dairy farmer in Rahata who owns three crossbred cows and one calf, sells milk to the village dairy society, and wants to reduce feed costs and prevent repeated mastitis.
+### 1. AI-Powered Question Answering
+- Farmers can ask questions about dairy animal care.
+- Uses Retrieval-Augmented Generation (RAG) to retrieve relevant information from reference documents.
+- Generates responses using Gemini.
+- Displays source references and page citations.
+- Uses a safe fallback when the available documents do not support an answer.
 
-## Problem Statement
+### 2. Multilingual Support
+- Supports English, Marathi, and Hindi.
+- Accepts farmer questions in different supported languages.
+- Provides answers in the user's selected or detected language.
 
-Small dairy farmers often struggle to find reliable and easy-to-understand information about animal nutrition, calf care, vaccination schedules, and common diseases.
+### 3. Smart Search
+- Searches relevant animal care records.
+- Uses TF-IDF and cosine similarity for text-based search.
+- Supports semantic search using vector embeddings and ChromaDB.
 
-Incorrect feeding practices and delayed disease management can increase costs and affect milk production.
+### 4. Daily Feed Plate
+- Calculates approximate daily fodder quantities based on the number of adult dairy animals.
+- Displays dry fodder and green fodder quantities.
+- Shows a green fodder split of 1:3 between legume and non-legume fodder.
+- Provides mineral mixture and clean water reminders.
+- Displays feeding information through an interactive chart.
 
-## Project Objective
+### 5. AI Agent and Tool Integration
+- Uses an agent workflow to route farmer questions.
+- Connects the RAG system with the vaccination scheduling tool.
+- Includes an approval step for vaccination-related tool actions.
 
-To provide accessible, source-based dairy animal care information and practical guidance for small dairy farmers across India.
+### 6. Feedback System
+- Allows users to submit thumbs-up or thumbs-down feedback.
+- Stores feedback in `data/feedback.json`.
 
-## Data Sources
+### 7. FastAPI Backend
+- Provides API endpoints for health checks, records, search, chat, AI questions, and agent operations.
+- Connects the backend with the Streamlit interface.
 
-- NDDB Farmers' Corner
-- Handbook of Good Dairy Husbandry Practices
+## Technologies Used
 
-## Project Features
-
-- Dairy animal feeding information
-- JSON-based record storage
-- Data ingestion and processing
-- PDF document downloading
-- Data analysis using Pandas
-- Smart search using TF-IDF and cosine similarity
-- FastAPI-based REST API
-- Question-based information retrieval
+- **Programming Language:** Python
+- **Frontend:** Streamlit
+- **Backend:** FastAPI
+- **LLM:** Google Gemini
+- **RAG:** Retrieval-Augmented Generation
+- **Vector Database:** ChromaDB
+- **Embeddings:** Text Embeddings
+- **Search:** TF-IDF, Cosine Similarity, Semantic Search
+- **AI Workflow:** LangGraph
+- **Data Processing:** Pandas
+- **API Communication:** Requests
+- **Data Storage:** JSON
 
 ## Project Structure
 
 ```text
-GEN-AI-TRAINING/
-│
-├── app/
-│   ├── cli.py
-│   ├── fetch.py
-│   ├── ingest.py
-│   ├── models.py
-│   ├── records.py
-│   ├── smart_search.py
-│   └── main.py
+PASHUSEVA/
 │
 ├── analysis/
 │   └── explore.py
 │
-├── data/
-│   ├── raw/
-│   ├── downloads/
-│   ├── records.json
-│   └── sample_records.py
+├── app/
+│   ├── agent_loop.py
+│   ├── chunking.py
+│   ├── cli.py
+│   ├── embed.py
+│   ├── evaluate_semantic_search.py
+│   ├── fetch.py
+│   ├── graph.py
+│   ├── ingest.py
+│   ├── llm.py
+│   ├── main.py
+│   ├── models.py
+│   ├── rag.py
+│   ├── records.py
+│   ├── smart_search.py
+│   ├── tools.py
+│   └── vectorstore.py
 │
-├── requirements.txt
-└── README.md
+├── data/
+│   ├── chroma_db/
+│   ├── downloads/
+│   │   └── pashuseva/
+│   ├── raw/
+│   ├── feedback.json
+│   ├── pashuseva_questions.json
+│   ├── records.json
+│   ├── sample_records.py
+│   ├── schemes_records.json
+│   └── scheme_questions.json
+│
+├── docs/
+│   └── how_llms_work.md
+│
+├── eval/
+│   ├── eval_set.json
+│   ├── prompt_compare.md
+│   ├── results.json
+│   ├── run_eval.py
+│   ├── run_prompt_compare.py
+│   └── search_results.md
+│
+├── prompts/
+│   ├── system.txt
+│   ├── task1.txt
+│   ├── task1_v1.txt
+│   ├── task1_v2.txt
+│   └── task2.txt
+│
+├── screenshots/
+│   ├── pashuseva_home.png
+│   ├── pashuseva_feed.png
+│   └── pashuseva_chat.png
+│
+├── ui/
+│   └── app.py
+│
+├── day01_intro.py
+├── day01_menu.py
+├── .env.example
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
 
-## Technologies Used
-
-- Python
-- FastAPI
-- Pandas
-- Scikit-learn
-- TF-IDF
-- Cosine Similarity
-- JSON
-- Requests
-- Uvicorn
-- Git and GitHub
-
-## How to Run PashuSeva
+## Installation and Setup
 
 ### 1. Clone the Repository
 
@@ -87,16 +147,16 @@ git clone https://github.com/shravani28-18/GEN-AI-TRAINING.git
 cd GEN-AI-TRAINING
 ```
 
-### 2. Create a Virtual Environment (Optional)
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate the environment on Windows:
+Activate it on Windows:
 
 ```powershell
-.\venv\Scripts\Activate.ps1
+venv\Scripts\activate
 ```
 
 ### 3. Install Dependencies
@@ -105,96 +165,95 @@ Activate the environment on Windows:
 pip install -r requirements.txt
 ```
 
-### 4. Run Data Analysis
+### 4. Configure Environment Variables
 
-```bash
-python -m analysis.explore
+Create a `.env` file in the project root and add your Gemini API configuration:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
-This displays:
+Use your own API key. Do not upload the `.env` file to GitHub.
 
-- Total number of records
-- Records grouped by topic
-- Records grouped by animal type
+### 5. Run the FastAPI Backend
 
-### 5. Start the FastAPI Server
+Open the first terminal:
 
 ```bash
-python -m uvicorn app.main:app --reload
+uvicorn app.main:app --reload
 ```
 
-### 6. Open API Documentation
+API documentation:
 
-Open the following URL in your browser:
-
+```text
 http://127.0.0.1:8000/docs
+```
 
-## Available API Endpoints
+### 6. Run the Streamlit Application
+
+Open a second terminal, activate the virtual environment, and run:
+
+```bash
+streamlit run ui/app.py
+```
+
+The Streamlit application will open in your browser.
+
+## API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/health` | Check API status |
-| GET | `/records?limit=5` | Retrieve records |
-| GET | `/records/{id}` | Retrieve a record by ID |
-| GET | `/search?q=green%20fodder` | Search records using smart search |
-| POST | `/questions` | Ask an animal-care question |
+| GET | `/health` | Checks API status |
+| GET | `/records` | Retrieves animal care records |
+| GET | `/records/{record_id}` | Retrieves a specific record |
+| GET | `/search` | Searches animal care records |
+| GET | `/search/semantic` | Performs semantic search |
+| POST | `/questions` | Processes question-based record search |
+| POST | `/chat` | Generates AI chat responses |
+| POST | `/ask` | Provides RAG-based answers |
+| POST | `/agent` | Runs the AI agent workflow |
 
-## Example Question Request
+## Screenshots
 
-POST `/questions`
+### Home Page
 
-Request Body:
+![PashuSeva Home](screenshots/pashuseva_home.png)
 
-```json
-{
-    "question": "How much green fodder should I feed?"
-}
-```
+### Daily Feed Plate
 
-The API searches the available records and returns the most relevant recommendation with its source information.
+![PashuSeva Daily Feed Plate](screenshots/pashuseva_feed.png)
 
-## Data Analysis
+### AI Chat Interface
 
-The project uses Pandas to analyse the available PashuSeva records.
+![PashuSeva Chat](screenshots/pashuseva_chat.png)
 
-The analysis includes:
+## Data Sources
 
-1. Total number of records.
-2. Number of records under each topic.
-3. Number of records for each animal type.
+The project uses dairy animal care reference materials, including:
 
-## Smart Search
+- National Dairy Development Board (NDDB) resources.
+- Handbook of Good Dairy Husbandry Practices.
+- Other downloaded dairy and animal care reference documents.
 
-PashuSeva uses TF-IDF (Term Frequency-Inverse Document Frequency) and cosine similarity to identify records relevant to a farmer's question.
+Answers are grounded in the available reference documents, with source and page citations where supported.
 
-The search results are ranked according to
+## Future Improvements
 
+- Expand the animal care knowledge base.
+- Improve multilingual voice-based interaction.
+- Add more farmer-focused features.
+- Improve retrieval accuracy and response evaluation.
+- Enhance the vaccination reminder and scheduling workflow.
 
-## Day 8 – Retrieval-Augmented Generation (RAG) and Evaluation
+## Author
 
-### 1. RAG Implementation
-- Implemented `app/rag.py` for answering farmer questions using retrieved PDF chunks.
-- Integrated the RAG pipeline with the FastAPI `POST /ask` endpoint.
-- Answers are generated using retrieved document context.
-- Source and page citations are included in responses.
-- Unanswerable evaluation question Q6 returns "I don't know."
+**Shravani Mahale**  
+B.Tech – Artificial Intelligence and Data Science  
+Sanjivani University
 
-### 2. Evaluation Dataset
-- Created `eval/eval_set.json`.
-- Contains 15 farmer-related evaluation questions.
-- Each question includes an expected answerability label.
+GitHub: [shravani28-18](https://github.com/shravani28-18)
 
-### 3. Configuration Comparison
+---
 
-Two configurations are prepared for evaluation:
-
-| Configuration | Chunk Size | Top-K |
-|---|---:|---:|
-| A | 500 | 3 |
-| B | 1000 | 5 |
-
-### 4. Evaluation Status
-- Evaluation script: `eval/run_eval.py`
-- Results file: `eval/results_day8.json`
-- Evaluation dataset verified: 15 questions.
-- Full evaluation pending Gemini API quota reset.
+**PashuSeva – Making reliable animal care information more accessible to dairy farmers.**
