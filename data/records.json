@@ -54,5 +54,75 @@
         "quantity_or_schedule": "Feed in 3-4 equally divided parts per day.",
         "source_doc": "NDDB Feeding of Dairy Animals",
         "source_url": "https://nddb.coop/farmer/animal-nutrition/feeding-of-dairy-animals"
+    },
+    {
+        "topic": "FMD Vaccination",
+        "animal_type": "Cow/Buffalo",
+        "recommendation": "Vaccinate against Foot and Mouth Disease (FMD).",
+        "quantity_or_schedule": "First dose at 4 months or above; booster after 1 month; subsequent vaccination every 6 months.",
+        "source_doc": "NDDB Farmers Corner - Vaccination Schedule",
+        "source_url": "https://nddb.coop/node/1127",
+        "schedule": {
+            "first_dose_months": 4,
+            "booster_months": 1,
+            "repeat_months": 6,
+            "once_in_lifetime": false
+        }
+    },
+    {
+        "topic": "HS Vaccination",
+        "animal_type": "Cow/Buffalo",
+        "recommendation": "Vaccinate against Haemorrhagic Septicaemia (HS).",
+        "quantity_or_schedule": "First dose at 6 months or above; annually in endemic areas.",
+        "source_doc": "NDDB Farmers Corner - Vaccination Schedule",
+        "source_url": "https://nddb.coop/node/1127",
+        "schedule": {
+            "first_dose_months": 6,
+            "booster_months": null,
+            "repeat_months": 12,
+            "once_in_lifetime": false,
+            "endemic_area_only": true
+        }
+    },
+    {
+        "topic": "BQ Vaccination",
+        "animal_type": "Cow/Buffalo",
+        "recommendation": "Vaccinate against Black Quarter (BQ).",
+        "quantity_or_schedule": "First dose at 6 months or above; annually in endemic areas.",
+        "source_doc": "NDDB Farmers Corner - Vaccination Schedule",
+        "source_url": "https://nddb.coop/node/1127",
+        "schedule": {
+            "first_dose_months": 6,
+            "booster_months": null,
+            "repeat_months": 12,
+            "once_in_lifetime": false,
+            "endemic_area_only": true
+        }
+    },
+    {
+        "topic": "Brucellosis Vaccination",
+        "animal_type": "Female Calf",
+        "recommendation": "Vaccinate eligible female calves against Brucellosis.",
+        "quantity_or_schedule": "First dose at 4-8 months of age; once in a lifetime.",
+        "source_doc": "NDDB Farmers Corner - Vaccination Schedule",
+        "source_url": "https://nddb.coop/node/1127",
+        "schedule": {
+            "first_dose_min_months": 4,
+            "first_dose_max_months": 8,
+            "once_in_lifetime": true
+        }
+    },
+    {
+        "topic": "Theileriosis Vaccination",
+        "animal_type": "Crossbred/Exotic Cattle",
+        "recommendation": "Vaccinate eligible crossbred and exotic cattle against Theileriosis.",
+        "quantity_or_schedule": "First dose at 3 months of age or above; once in a lifetime.",
+        "source_doc": "NDDB Farmers Corner - Vaccination Schedule",
+        "source_url": "https://nddb.coop/node/1127",
+        "schedule": {
+            "first_dose_months": 3,
+            "once_in_lifetime": true
+        }
     }
+
 ]

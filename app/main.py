@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from app.smart_search import search_records
 from app.llm import generate_response
 from app.vectorstore import search_similar
-
+from app.graph import run_graph
 from app.rag import answer_question
 
 # Project folder path
@@ -124,7 +124,11 @@ class QuestionRequest(BaseModel):
 class ChatRequest(BaseModel):
     question: str
 
-
+class AgentRequest(BaseModel):
+    question: str
+    animal_profile: dict | None = None
+    approved: bool = False
+    thread_id: str = "pashuseva-user"
 # Chat Response Model
 class ChatResponse(BaseModel):
     answer: str
@@ -260,4 +264,40 @@ def ask_api(request: QuestionRequest):
         raise HTTPException(
             status_code=500,
             detail="Unable to generate an answer. Please try again."
+        )
+    
+# LangGraph Agent API
+@app.post("/agent")
+def agent_api(request: AgentRequest):
+
+    question = request.question.strip()
+
+    if not question:
+        raise HTTPException(
+            status_code=400,
+            detail="Question cannot be empty"
+        )
+
+    try:
+        result = run_graph(
+            question=question,
+            animal_profile=request.animal_profile,
+            approved=request.approved,
+            thread_id=request.thread_id
+        )
+
+        return {
+            "question": question,
+            "answer": result.get("answer", ""),
+            "tool": result.get("tool"),
+            "tool_result": result.get("tool_result"),
+            "approval_required": result.get("tool") == "approval_required"
+        }
+
+    except Exception as error:
+        print(f"Agent error: {error}")
+
+        raise HTTPException(
+            status_code=500,
+            detail="Agent failed. Please try again."
         )
