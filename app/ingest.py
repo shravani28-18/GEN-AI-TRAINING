@@ -39,7 +39,7 @@ def ingest_data():
 
         try:
             if not isinstance(raw, dict):
-                raise ValueError("Record must be a dictionary")
+                raise TypeError("Record must be a dictionary")
 
             required_fields = [
                 "topic",

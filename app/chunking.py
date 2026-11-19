@@ -1,7 +1,7 @@
 
 from pathlib import Path
-from pypdf import PdfReader
 
+from pypdf import PdfReader
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

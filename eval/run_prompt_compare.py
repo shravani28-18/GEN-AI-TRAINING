@@ -3,9 +3,8 @@ import json
 import time
 from pathlib import Path
 
-from app.smart_search import search_records
 from app.llm import generate_response
-
+from app.smart_search import search_records
 
 # Project folder path
 BASE_DIR = Path(__file__).resolve().parent.parent

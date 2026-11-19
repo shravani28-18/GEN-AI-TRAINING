@@ -1,18 +1,20 @@
 
-import streamlit as st
-import requests
 import json
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+
 import plotly.graph_objects as go
+import requests
+import streamlit as st
 
 st.set_page_config(
     page_title="PashuSeva",
     page_icon="🐄",
     layout="wide"
 )
+import os
 
-API_URL = "http://127.0.0.1:8000/ask"
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000") + "/ask"
 BASE_DIR = Path(__file__).resolve().parent.parent
 FEEDBACK_FILE = BASE_DIR / "data" / "feedback.json"
 
@@ -223,7 +225,7 @@ with col2:
     fig.update_layout(
         title=t["chart"],
         showlegend=True,
-        margin=dict(t=50, b=20, l=10, r=10)
+        margin={"t": 50, "b": 20, "l": 10, "r": 10}
     )
 
     st.plotly_chart(fig, use_container_width=True)
@@ -312,52 +314,51 @@ if question:
     with st.chat_message("user"):
         st.markdown(question)
 
-    with st.chat_message("assistant"):
-        with st.spinner(t["thinking"]):
-            try:
-                language_instruction = {
-                    "English": "Answer in English.",
-                    "मराठी": "उत्तर मराठीत द्या.",
-                    "हिंदी": "उत्तर हिंदी में दें."
-                }
+    with st.chat_message("assistant"), st.spinner(t["thinking"]):
+        try:
+            language_instruction = {
+                "English": "Answer in English.",
+                "मराठी": "उत्तर मराठीत द्या.",
+                "हिंदी": "उत्तर हिंदी में दें."
+            }
 
-                final_question = (
-                    f"{language_instruction[language]}\n"
-                    f"Animal: {animal_type}\n"
-                    f"Question: {question}"
-                )
+            final_question = (
+                f"{language_instruction[language]}\n"
+                f"Animal: {animal_type}\n"
+                f"Question: {question}"
+            )
 
-                response = requests.post(
-                    API_URL,
-                    json={
-                        "question": final_question,
-                        "animal_profile": None,
-                        "approved": False,
-                        "thread_id": "pashuseva-streamlit"
-                    },
-                    timeout=120
-                )
+            response = requests.post(
+                API_URL,
+                json={
+                    "question": final_question,
+                    "animal_profile": None,
+                    "approved": False,
+                    "thread_id": "pashuseva-streamlit"
+                },
+                timeout=120
+            )
 
-                response.raise_for_status()
-                result = response.json()
+            response.raise_for_status()
+            result = response.json()
 
-                answer = result.get("answer", t["no_answer"])
-                citations = result.get("citations", [])
+            answer = result.get("answer", t["no_answer"])
+            citations = result.get("citations", [])
 
-                st.markdown(answer)
+            st.markdown(answer)
 
-                if citations:
-                    with st.expander(t["sources"]):
-                        for citation in citations:
-                            st.write(citation)
+            if citations:
+                with st.expander(t["sources"]):
+                    for citation in citations:
+                        st.write(citation)
 
-                st.session_state.messages.append({
-                    "role": "assistant",
-                    "content": answer,
-                    "citations": citations,
-                    "question": question,
-                    "feedback": None
-                })
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": answer,
+                "citations": citations,
+                "question": question,
+                "feedback": None
+            })
 
-            except requests.exceptions.RequestException:
-                st.error(t["error"])
+        except requests.exceptions.RequestException:
+            st.error(t["error"])

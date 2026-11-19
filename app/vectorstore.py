@@ -1,11 +1,11 @@
 
-from pathlib import Path
 import time
+from pathlib import Path
+
 import chromadb
 
 from app.chunking import load_pdf_chunks
 from app.embed import embed_chunks, embed_texts
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "data" / "chroma_db"

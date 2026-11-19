@@ -1,8 +1,8 @@
 
 import json
 from pathlib import Path
-import pandas as pd
 
+import pandas as pd
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_FILE = BASE_DIR / "data" / "records.json"

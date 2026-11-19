@@ -3,7 +3,6 @@ import json
 from datetime import date
 from pathlib import Path
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_FILE = BASE_DIR / "data" / "records.json"
 
@@ -77,16 +76,18 @@ def cattle_vaccine_scheduler(
         schedule = vaccine.get("schedule", {})
         animal_requirement = vaccine.get("animal_type", "")
 
-        # Eligibility checks
+                        # Eligibility checks
         if "Female Calf" in animal_requirement and not female:
             continue
 
         if "Crossbred/Exotic" in animal_requirement and not crossbred:
             continue
 
-        if "Cow/Buffalo" in animal_requirement:
-            if animal_type.lower() not in ["cow", "buffalo"]:
-                continue
+        if (
+            "Cow/Buffalo" in animal_requirement
+            and animal_type.lower() not in ["cow", "buffalo"]
+        ):
+            continue
 
         if schedule.get("endemic_area_only") and not endemic_area:
             continue

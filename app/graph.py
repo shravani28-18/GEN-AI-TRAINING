@@ -1,15 +1,15 @@
 
-from typing import TypedDict, Optional, Any
+from typing import Any, TypedDict
 
-from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import MemorySaver
+from langgraph.graph import END, START, StateGraph
 
 from app.agent_loop import run_agent
 
 
 class AgentState(TypedDict, total=False):
     question: str
-    animal_profile: Optional[dict]
+    animal_profile: dict | None
     approved: bool
     needs_approval: bool
     answer: str

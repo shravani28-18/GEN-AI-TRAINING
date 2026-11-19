@@ -5,7 +5,6 @@
 
 from data.sample_records import records
 
-
 # 1. LOAD ALL RECORDS
 
 def load_records():

@@ -2,8 +2,8 @@
 import json
 from pathlib import Path
 
-from app.vectorstore import search_similar
 from app.llm import generate_response
+from app.vectorstore import search_similar
 
 
 def answer_question(question: str, top_k: int = 5):

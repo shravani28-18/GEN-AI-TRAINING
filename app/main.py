@@ -5,11 +5,11 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from app.smart_search import search_records
-from app.llm import generate_response
-from app.vectorstore import search_similar
 from app.graph import run_graph
+from app.llm import generate_response
 from app.rag import answer_question
+from app.smart_search import search_records
+from app.vectorstore import search_similar
 
 # Project folder path
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -108,7 +108,7 @@ def semantic_search_api(q: str, top_k: int = 5):
             "results": results
         }
 
-    except Exception:
+    except Exception:  # noqa: BLE001
         raise HTTPException(
             status_code=500,
             detail="Semantic search failed. Please try again later."
@@ -259,7 +259,7 @@ def ask_api(request: QuestionRequest):
             "question": question,
             **result
         }
-    except Exception as error:
+    except Exception as error:  # noqa: BLE001
         print(f"RAG error: {error}")
         raise HTTPException(
             status_code=500,
@@ -294,7 +294,7 @@ def agent_api(request: AgentRequest):
             "approval_required": result.get("tool") == "approval_required"
         }
 
-    except Exception as error:
+    except Exception as error:  # noqa: BLE001
         print(f"Agent error: {error}")
 
         raise HTTPException(

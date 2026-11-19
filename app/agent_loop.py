@@ -1,7 +1,7 @@
 
+from app.llm import generate_response
 from app.rag import answer_question
 from app.tools import cattle_vaccine_scheduler
-from app.llm import generate_response
 
 
 def run_agent(question, animal_profile=None):

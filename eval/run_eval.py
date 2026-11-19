@@ -1,4 +1,3 @@
-
 import json
 from pathlib import Path
 
@@ -7,7 +6,6 @@ import chromadb
 from app.chunking import load_pdf_chunks
 from app.embed import embed_chunks, embed_texts
 from app.llm import generate_response
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "data" / "chroma_db"
@@ -33,18 +31,42 @@ def create_chunks(chunk_size):
 def build_collection(chunks, name):
     client = chromadb.PersistentClient(path=str(DB_PATH))
 
+    # Existing collection असेल तर तीच वापरायची.
+    # Collection delete करायची नाही.
     try:
-        client.delete_collection(name)
-    except Exception:
-        pass
+        collection = client.get_collection(name)
+        print(f"Resuming existing collection: {name}")
 
-    collection = client.create_collection(
-        name=name,
-        metadata={"hnsw:space": "cosine"}
+    except ValueError:
+        collection = client.create_collection(
+            name=name,
+            metadata={"hnsw:space": "cosine"}
+        )
+        print(f"Created new collection: {name}")
+
+    # आधी index झालेले IDs शोधायचे.
+    existing_ids = set(
+        collection.get(include=[])["ids"]
     )
 
-    for start in range(0, len(chunks), 25):
-        batch = chunks[start:start + 25]
+    print(f"Already indexed: {len(existing_ids)} chunks")
+
+    batch_size = 25
+
+    for start in range(0, len(chunks), batch_size):
+
+        original_batch = chunks[start:start + batch_size]
+
+        # आधीच index झालेले chunks skip करायचे.
+        batch = [
+            item for item in original_batch
+            if item["id"] not in existing_ids
+        ]
+
+        if not batch:
+            continue
+
+        # फक्त नवीन chunks embed करायचे.
         embedded = embed_chunks(batch)
 
         collection.add(
@@ -61,17 +83,21 @@ def build_collection(chunks, name):
             ]
         )
 
-        print(f"Indexed {min(start + 25, len(chunks))}/{len(chunks)} chunks")
+        # Newly added IDs update करायचे.
+        existing_ids.update(
+            item["id"] for item in embedded
+        )
+
+        print(
+            f"Indexed: {len(existing_ids)}/{len(chunks)} chunks"
+        )
+
+    print(f"Collection completed: {collection.count()} chunks")
 
     return collection
 
 
-def retrieve(collection, question, top_k):
-    query_embedding = embed_texts(
-        [question],
-        task_type="RETRIEVAL_QUERY"
-    )[0]
-
+def retrieve(collection, query_embedding, top_k):
     result = collection.query(
         query_embeddings=[query_embedding],
         n_results=min(top_k, collection.count())
@@ -84,6 +110,18 @@ def run():
     with open(EVAL_FILE, "r", encoding="utf-8") as file:
         questions = json.load(file)
 
+    if len(questions) != 15:
+        raise ValueError(
+            f"Expected 15 evaluation questions, found {len(questions)}"
+        )
+
+    query_embeddings = embed_texts(
+        [item["question"] for item in questions],
+        task_type="RETRIEVAL_QUERY"
+    )
+
+    print("Question embeddings generated successfully!")
+
     client = chromadb.PersistentClient(path=str(DB_PATH))
 
     configurations = [
@@ -94,14 +132,22 @@ def run():
     all_results = []
 
     for config in configurations:
+
         print(f"\nRunning Configuration {config['name']}")
 
         if config["name"] == "B":
-            collection = client.get_collection("pashuseva_documents")
+
+            collection = client.get_collection(
+                "pashuseva_documents"
+            )
+
             print("Using existing pashuseva_documents collection")
 
         else:
+
             chunks = create_chunks(config["chunk_size"])
+
+            print(f"Total chunks generated: {len(chunks)}")
 
             collection = build_collection(
                 chunks,
@@ -111,22 +157,25 @@ def run():
         correct = 0
         total = len(questions)
 
-        for item in questions:
+        for index, item in enumerate(questions):
+
             question = item["question"]
             expected = item["expected_answerable"]
 
             documents = retrieve(
                 collection,
-                question,
+                query_embeddings[index],
                 config["top_k"]
             )
 
             context = "\n\n".join(documents)
 
             if not expected:
+
                 answer = "I don't know."
 
             else:
+
                 prompt = f"""
 Answer only using the supplied context.
 If the context does not support an answer,
@@ -173,6 +222,7 @@ Context:
 
     print("\nEvaluation completed!")
     print("Results saved to:", RESULT_FILE)
+
     print(json.dumps(all_results, indent=4))
 
 
