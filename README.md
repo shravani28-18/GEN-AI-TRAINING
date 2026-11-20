@@ -1,4 +1,6 @@
-# PASHUSEVA – Smart Animal Care Information
+﻿# PASHUSEVA – Smart Animal Care Information
+
+[![PashuSeva CI](https://github.com/shravani28-18/GEN-AI-TRAINING/actions/workflows/ci.yml/badge.svg)](https://github.com/shravani28-18/GEN-AI-TRAINING/actions/workflows/ci.yml)
 
 PashuSeva is an AI-powered animal care information system designed to help small dairy farmers get reliable information about feeding, calf care, vaccination, common diseases, and dairy animal management.
 
