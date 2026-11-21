@@ -259,3 +259,12 @@ GitHub: [shravani28-18](https://github.com/shravani28-18)
 ---
 
 **PashuSeva – Making reliable animal care information more accessible to dairy farmers.**
+
+
+## Deployment
+
+- API: https://pashuseva-ai.onrender.com
+- UI: Local testing successful. Render UI URL pending.
+
+### API Health Check
+https://pashuseva-ai.onrender.com/health
